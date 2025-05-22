@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn3aopsg3vcwe"]
+
+[ext_resource type="Script" uid="uid://cs55qmx8nakq0" path="res://The_Alchemist_Quest/scripts/player/hotbar.gd" id="1_n5hee"]
+[ext_resource type="Texture2D" uid="uid://bo38airpt43af" path="res://The_Alchemist_Quest/assets/gameDemo/Puzzle_slot.png" id="1_tssvr"]
+[ext_resource type="Texture2D" uid="uid://bnircc0pmgkba" path="res://The_Alchemist_Quest/assets/button/Inventory_slot.png" id="2_n5hee"]
+[ext_resource type="Script" uid="uid://bep0ddwfkc6nt" path="res://The_Alchemist_Quest/scripts/inventory/slot.gd" id="3_xk10w"]
+[ext_resource type="Script" uid="uid://d371elfmusf57" path="res://The_Alchemist_Quest/scripts/inventory/panel_description.gd" id="4_paomi"]
+[ext_resource type="FontFile" uid="uid://ccdxh8aqwkjxn" path="res://The_Alchemist_Quest/assets/font/FVF_Fernando_08.ttf" id="5_u7qjo"]
+[ext_resource type="Script" uid="uid://d12oopvvye2ty" path="res://The_Alchemist_Quest/scripts/inventory/popup_description.gd" id="6_aa18x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yd2r"]
+texture = ExtResource("2_n5hee")
+
+[node name="task3_slots" type="Node2D"]
+script = ExtResource("1_n5hee")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 35.0
+offset_top = 288.0
+offset_right = 125.0
+offset_bottom = 375.0
+texture = ExtResource("1_tssvr")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 366.0
+offset_top = 286.0
+offset_right = 456.0
+offset_bottom = 373.0
+texture = ExtResource("1_tssvr")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 448.0
+offset_top = 287.0
+offset_right = 538.0
+offset_bottom = 374.0
+texture = ExtResource("1_tssvr")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = 776.0
+offset_top = 286.0
+offset_right = 866.0
+offset_bottom = 373.0
+texture = ExtResource("1_tssvr")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 42.0
+offset_top = 298.0
+offset_right = 858.0
+offset_bottom = 490.0
+columns = 10
+
+[node name="Slot" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(74, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7yd2r")
+script = ExtResource("3_xk10w")
+
+[node name="VSeparator" type="VSeparator" parent="GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+
+[node name="Slot2" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(74, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7yd2r")
+script = ExtResource("3_xk10w")
+
+[node name="Slot3" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(74, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7yd2r")
+script = ExtResource("3_xk10w")
+
+[node name="VSeparator2" type="VSeparator" parent="GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+
+[node name="Slot4" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(74, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7yd2r")
+script = ExtResource("3_xk10w")
+
+[node name="PopupPanel" type="Panel" parent="."]
+visible = false
+z_index = 1
+offset_left = 727.0
+offset_top = -19.0
+offset_right = 1055.0
+offset_bottom = 274.0
+script = ExtResource("4_paomi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupPanel"]
+layout_mode = 0
+offset_left = 23.8344
+offset_top = 13.5842
+offset_right = 284.834
+offset_bottom = 85.5842
+
+[node name="ItemNameLabel" type="Label" parent="PopupPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_u7qjo")
+text = "ITEM NAME"
+
+[node name="ItemImageRect" type="TextureRect" parent="PopupPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="PopupPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_u7qjo")
+text = "TESTING TEXT"
+script = ExtResource("6_aa18x")

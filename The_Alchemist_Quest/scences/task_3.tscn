@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://wc8wulu6dgqm"]
+
+[ext_resource type="Script" uid="uid://bhsjfqyt7fwyd" path="res://The_Alchemist_Quest/scripts/player/user_interface.gd" id="1_quac6"]
+[ext_resource type="PackedScene" uid="uid://4ups773dxql4" path="res://The_Alchemist_Quest/scences/player/inventory.tscn" id="1_scpuh"]
+[ext_resource type="PackedScene" uid="uid://d23hco84jrdw5" path="res://The_Alchemist_Quest/scences/player/hotbar.tscn" id="3_quac6"]
+[ext_resource type="Texture2D" uid="uid://bga4tvqg7w4xq" path="res://The_Alchemist_Quest/assets/gameDemo/Screenshot 2025-05-20 212325.png" id="4_5ba05"]
+[ext_resource type="Texture2D" uid="uid://cjoqin20165nt" path="res://The_Alchemist_Quest/assets/gameDemo/Gas_mask.png" id="4_c5hcm"]
+[ext_resource type="Texture2D" uid="uid://b8akhtk5dhoxy" path="res://The_Alchemist_Quest/assets/gameDemo/Improved_mask.png" id="4_cla8d"]
+
+[node name="task3" type="Node2D"]
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+script = ExtResource("1_quac6")
+
+[node name="Inventory" parent="UserInterface" instance=ExtResource("1_scpuh")]
+position = Vector2(772, 210)
+
+[node name="Hotbar" parent="UserInterface" instance=ExtResource("3_quac6")]
+position = Vector2(-3, 17)
+
+[node name="Hotbar2" parent="UserInterface/Hotbar" instance=ExtResource("3_quac6")]
+position = Vector2(-159, -113)
+
+[node name="Hotbar3" parent="UserInterface/Hotbar" instance=ExtResource("3_quac6")]
+position = Vector2(14, -111)
+
+[node name="ImprovedMask" type="Sprite2D" parent="UserInterface"]
+visible = false
+position = Vector2(534.22, 250)
+scale = Vector2(2.25333, 2.25333)
+texture = ExtResource("4_cla8d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1151.0
+offset_bottom = 645.0
+texture = ExtResource("4_5ba05")
+
+[node name="GasMask" type="Sprite2D" parent="."]
+position = Vector2(533, 236)
+scale = Vector2(13.0556, 13.0556)
+texture = ExtResource("4_c5hcm")
