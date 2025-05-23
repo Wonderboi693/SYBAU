@@ -51,7 +51,7 @@ func check_crafting_recipe():
 	for slot in all_slots:
 		for child in slot.get_children():
 			print("🔎 Found child: ", child.name, " | Type: ", typeof(child), " | Script: ", child.get_script())
-			if child is InventoryItem:
+			if child is Item:
 				print("✅ Found InventoryItem in slot: ", slot.name, " with item_name: ", child.item_name)
 				if child.item_name in required_items:
 					found_items.append(child.item_name)
@@ -69,7 +69,7 @@ func check_crafting_recipe():
 		# Remove the used items
 	for slot in all_slots:
 		for child in slot.get_children():
-			if child is InventoryItem:
+			if child is Item:
 				if child.item_name in required_items:
 					print("✅ Found item: ", child.item_name)
 					found_items.append(child.item_name)
