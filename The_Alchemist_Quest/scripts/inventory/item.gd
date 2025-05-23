@@ -1,7 +1,8 @@
 extends Node2D
 
-class_name Item
+class_name InventoryItem
 
+@onready var icon = $TextureRect
 var item_name: String = ""
 var item_quantity: int = 0
 
@@ -49,6 +50,7 @@ func _update_visual():
 func set_item(nm, qt):
 	item_name = nm
 	item_quantity = qt
+	update_icon()
 	
 	var label = get_node_or_null("Label")
 	var texture_node = get_node_or_null("TextureRect")
@@ -66,6 +68,15 @@ func set_item(nm, qt):
 	print("Texture path:", "res://The_Alchemist_Quest/assets/gameDemo/" + item_name + ".png")
 	_update_visual()
 
+func update_icon():
+	var icon_path = "res://The_Alchemist_Quest/assets/gameDemo/%s.png" % item_name
+	print("Texture path:", icon_path)
+
+	if ResourceLoader.exists(icon_path):
+		icon.texture = load(icon_path)
+	else:
+		icon.texture = null
+		print("⚠️ Icon not found for:", item_name)
 
 func add_item_quantity(amount_to_add):
 	item_quantity += amount_to_add

@@ -24,11 +24,6 @@ position = Vector2(-159, -113)
 [node name="Hotbar3" parent="UserInterface/Hotbar" instance=ExtResource("3_quac6")]
 position = Vector2(14, -111)
 
-[node name="GasMask" type="Sprite2D" parent="UserInterface"]
-position = Vector2(533, 236)
-scale = Vector2(13.0556, 13.0556)
-texture = ExtResource("4_c5hcm")
-
 [node name="ImprovedMask" type="Sprite2D" parent="UserInterface"]
 visible = false
 position = Vector2(534.22, 250)
@@ -39,3 +34,8 @@ texture = ExtResource("4_cla8d")
 offset_right = 1151.0
 offset_bottom = 645.0
 texture = ExtResource("4_5ba05")
+
+[node name="GasMask" type="Sprite2D" parent="."]
+position = Vector2(533, 236)
+scale = Vector2(13.0556, 13.0556)
+texture = ExtResource("4_c5hcm")

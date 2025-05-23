@@ -1,5 +1,7 @@
 extends Node2D
 
+
+
 @onready var hotbar = $HotbarSlot
 @onready var slots = hotbar.get_children()
 const SlotClass = preload("res://The_Alchemist_Quest/scripts/inventory/slot.gd")
@@ -46,14 +48,18 @@ func check_crafting_recipe():
 		print("Could not find Hotbar2 or Hotbar3")
 		return
 
-	var all_slots = hotbar2.get_children() + hotbar3.get_children()
+	var all_slots = []
+	for hotbar in [hotbar2, hotbar3]:
+		for slot_container in hotbar.get_children():
+			if slot_container.has_method("get_children"):
+				for sub_slot in slot_container.get_children():
+					all_slots.append(sub_slot)
 
 	for slot in all_slots:
 		for child in slot.get_children():
-			print("🔎 Found child: ", child.name, " | Type: ", typeof(child), " | Script: ", child.get_script())
-			if child is Item:
+			if child is InventoryItem:
 				print("✅ Found InventoryItem in slot: ", slot.name, " with item_name: ", child.item_name)
-				if child.item_name in required_items:
+				if child.item_name in required_items and child.item_name not in found_items:
 					found_items.append(child.item_name)
 			else:
 				print("❌ Not an InventoryItem in slot: ", slot.name)
@@ -63,22 +69,22 @@ func check_crafting_recipe():
 	found_items.sort()
 	required_items.sort()
 
-	if found_items == required_items:
-		print("🎉 Crafting Improved Mask!")
+	if found_items.size() == required_items.size() and found_items == required_items:
+		print("🛠 Crafting Improved Mask!")
+		# Toggle masks
+		var gas_mask = get_node_or_null("../../GasMask")
+		var improved_mask = get_node_or_null("../../ImprovedMask")
+		if gas_mask and improved_mask:
+			gas_mask.visible = false
+			improved_mask.visible = true
 
-		# Remove the used items
-	for slot in all_slots:
-		for child in slot.get_children():
-			if child is Item:
-				if child.item_name in required_items:
-					print("✅ Found item: ", child.item_name)
-					found_items.append(child.item_name)
-				else:
-					print("⚠️ Item not in required list: ", child.item_name)
-			else:
-				print("❌ Skipping non-item node: ", child.name, " in slot: ", slot.name)
+	# Consume crafting materials
+		var items_to_consume := ["Activated_coal", "Filter_cotton", "Mini_oxygen"]
+		for slot in hotbar2.get_children() + hotbar3.get_children():
+			if slot is InventorySlot and slot.item and slot.item.item_name in items_to_consume:
+				slot.remove_item()
 
-
+	
 
 
 
